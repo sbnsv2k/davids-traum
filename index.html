@@ -71,7 +71,7 @@
     <div class="ui-overlay">
       <div id="scoreDisplay">PUNKTE: 0000</div>
       <div id="levelDisplay">DAVIDS TRAUM 1-1</div>
-      <div id="livesDisplay">LEBEN: ❤️❤️❤️</div>
+      <div id="livesDisplay">LEBEN: ❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️</div>
     </div>
     <canvas id="gameCanvas" width="800" height="450"></canvas>
   </div>
@@ -161,7 +161,7 @@
     // Spielzustand
     let currentLevelIndex = 0;
     let score = 0;
-    let lives = 3;
+    let lives = 10; // Auf 10 Leben erhöht[cite: 1]
     let gameOver = false;
     let gameWon = false;
     let animTimer = 0;
@@ -181,38 +181,94 @@
       coyoteTime: 0, jumpBuffer: 0, isDying: false, rotation: 0
     };
 
+    // Völlig abwechslungsreiche Level (Mario-Style: Klassisch, Untergrund/Höhle, Vertikal/Turm, Boss)[cite: 1]
     const levels = [
       {
-        name: "1-1", width: 4000, bgColor: "#5c94fc",
+        name: "1-1 (Grasland)", width: 4000, bgColor: "#5c94fc",
         platforms: [
-          { x: 0, y: 400, width: 1400, height: 50 },
-          { x: 1550, y: 400, width: 1200, height: 50 },
-          { x: 2900, y: 400, width: 1100, height: 50 },
-          { x: 800, y: 385, width: 120, height: 15, type: 'spike' },
-          { x: 2000, y: 385, width: 150, height: 15, type: 'spike' },
-          { x: 350, y: 320, width: 90, height: 20, type: 'block' },
-          { x: 480, y: 260, width: 90, height: 20, type: 'block' },
-          { x: 610, y: 200, width: 90, height: 20, type: 'block' },
-          { x: 1050, y: 310, width: 45, height: 90, type: 'pipe' },
-          { x: 1300, y: 280, width: 120, height: 20, type: 'block' },
-          { x: 1750, y: 310, width: 45, height: 90, type: 'pipe' },
-          { x: 2200, y: 270, width: 100, height: 20, type: 'block' },
-          { x: 2350, y: 210, width: 100, height: 20, type: 'block' },
-          { x: 3200, y: 280, width: 140, height: 20, type: 'block' }
+          { x: 0, y: 400, width: 900, height: 50 },
+          { x: 1050, y: 400, width: 800, height: 50 },
+          { x: 2000, y: 400, width: 1000, height: 50 },
+          { x: 3150, y: 400, width: 950, height: 50 },
+          { x: 500, y: 385, width: 100, height: 15, type: 'spike' },
+          { x: 1400, y: 385, width: 120, height: 15, type: 'spike' },
+          { x: 2500, y: 385, width: 100, height: 15, type: 'spike' },
+          { x: 350, y: 300, width: 90, height: 20, type: 'block' },
+          { x: 480, y: 240, width: 90, height: 20, type: 'block' },
+          { x: 750, y: 310, width: 45, height: 90, type: 'pipe' },
+          { x: 1200, y: 280, width: 130, height: 20, type: 'block' },
+          { x: 1650, y: 310, width: 45, height: 90, type: 'pipe' },
+          { x: 2250, y: 260, width: 100, height: 20, type: 'block' },
+          { x: 2800, y: 290, width: 110, height: 20, type: 'block' }
         ],
         coins: [
-          { x: 380, y: 280 }, { x: 510, y: 220 }, { x: 640, y: 160 }, 
-          { x: 1330, y: 240 }, { x: 2240, y: 230 }, { x: 2380, y: 170 }, { x: 3250, y: 240 }
+          { x: 380, y: 260 }, { x: 510, y: 200 }, 
+          { x: 1230, y: 240 }, { x: 2280, y: 220 }, { x: 2830, y: 250 }
         ],
         enemies: [
-          { x: 500, y: 364, width: 32, height: 36, vx: -0.9, minX: 400, maxX: 750, type: 0, bodyColor: '#e74c3c' },
-          { x: 1200, y: 364, width: 32, height: 36, vx: -1.0, minX: 950, maxX: 1380, type: 1, bodyColor: '#8e44ad' },
-          { x: 1850, y: 364, width: 32, height: 36, vx: 1.1, minX: 1650, maxX: 2100, type: 2, bodyColor: '#2ecc71' },
-          { x: 2600, y: 364, width: 32, height: 36, vx: -1.1, minX: 2400, maxX: 2850, type: 0, bodyColor: '#e74c3c' }
+          { x: 600, y: 364, width: 32, height: 36, vx: -1.0, minX: 450, maxX: 850, type: 0, bodyColor: '#e74c3c' },
+          { x: 1300, y: 364, width: 32, height: 36, vx: -1.2, minX: 1100, maxX: 1750, type: 1, bodyColor: '#8e44ad' },
+          { x: 2300, y: 364, width: 32, height: 36, vx: 1.3, minX: 2100, maxX: 2900, type: 2, bodyColor: '#2ecc71' }
         ],
         flag: { x: 3800, y: 150, width: 12, height: 250 }
       },
-      // (Die anderen Level bleiben unverändert in deiner echten Datei, hier gekürzt zur Übersicht oder alle kopieren)
+      {
+        name: "1-2 (Höhlen-Labyrinth)", width: 3800, bgColor: "#121629",
+        platforms: [
+          { x: 0, y: 400, width: 700, height: 50 },
+          { x: 850, y: 400, width: 600, height: 50 },
+          { x: 1600, y: 400, width: 800, height: 50 },
+          { x: 2550, y: 400, width: 1250, height: 50 },
+          // Viele Gruben und Sprünge
+          { x: 700, y: 420, width: 150, height: 30, type: 'spike' },
+          { x: 1450, y: 420, width: 150, height: 30, type: 'spike' },
+          { x: 2400, y: 420, width: 150, height: 30, type: 'spike' },
+          // Höhlen-Plattformen übereinander
+          { x: 350, y: 280, width: 100, height: 20, type: 'block' },
+          { x: 550, y: 200, width: 100, height: 20, type: 'block' },
+          { x: 1000, y: 270, width: 120, height: 20, type: 'block' },
+          { x: 1250, y: 190, width: 120, height: 20, type: 'block' },
+          { x: 1800, y: 280, width: 100, height: 20, type: 'block' },
+          { x: 2050, y: 220, width: 100, height: 20, type: 'block' },
+          { x: 2850, y: 270, width: 140, height: 20, type: 'block' },
+          { x: 3200, y: 190, width: 120, height: 20, type: 'block' }
+        ],
+        coins: [
+          { x: 580, y: 160 }, { x: 1280, y: 150 }, { x: 2080, y: 180 }, { x: 3230, y: 150 }
+        ],
+        enemies: [
+          { x: 900, y: 364, width: 32, height: 36, vx: 1.4, minX: 880, maxX: 1400, type: 0, bodyColor: '#e74c3c' },
+          { x: 1700, y: 364, width: 32, height: 36, vx: -1.3, minX: 1620, maxX: 2350, type: 2, bodyColor: '#2ecc71' },
+          { x: 2700, y: 364, width: 32, height: 36, vx: 1.5, minX: 2600, maxX: 3300, type: 1, bodyColor: '#8e44ad' }
+        ],
+        flag: { x: 3650, y: 150, width: 12, height: 250 }
+      },
+      {
+        name: "1-3 (Himmels-Plattformen)", width: 4000, bgColor: "#3498db",
+        platforms: [
+          { x: 0, y: 400, width: 600, height: 50 },
+          // Viele schwebende schmale Blöcke / Abgründe wie in späten Mario-Welten
+          { x: 750, y: 350, width: 100, height: 20, type: 'block' },
+          { x: 950, y: 300, width: 100, height: 20, type: 'block' },
+          { x: 1150, y: 240, width: 100, height: 20, type: 'block' },
+          { x: 1400, y: 200, width: 120, height: 20, type: 'block' },
+          { x: 1700, y: 260, width: 100, height: 20, type: 'block' },
+          { x: 1950, y: 320, width: 100, height: 20, type: 'block' },
+          { x: 2200, y: 380, width: 400, height: 70 }, // Kleine feste Insel
+          { x: 2750, y: 310, width: 90, height: 20, type: 'block' },
+          { x: 2950, y: 250, width: 90, height: 20, type: 'block' },
+          { x: 3200, y: 200, width: 120, height: 20, type: 'block' },
+          { x: 3500, y: 400, width: 500, height: 50 }
+        ],
+        coins: [
+          { x: 980, y: 260 }, { x: 1430, y: 160 }, { x: 1730, y: 220 }, { x: 2980, y: 210 }, { x: 3230, y: 160 }
+        ],
+        enemies: [
+          { x: 2300, y: 344, width: 32, height: 36, vx: -1.2, minX: 2220, maxX: 2580, type: 0, bodyColor: '#e74c3c' },
+          { x: 3600, y: 364, width: 32, height: 36, vx: 1.4, minX: 3520, maxX: 3900, type: 1, bodyColor: '#8e44ad' }
+        ],
+        flag: { x: 3850, y: 150, width: 12, height: 250 }
+      },
       {
         name: "3-BOSS", width: 2800, bgColor: "#02040a",
         platforms: [
@@ -236,8 +292,6 @@
         flag: { x: 2650, y: 150, width: 12, height: 250 }
       }
     ];
-
-    // Hinweis: Füge hier alle deine Level 1-2 bis 3-1 genau so ein wie in deinem Originalcode!
 
     function createExplosion(x, y, colors, count = 12) {
       for (let i = 0; i < count; i++) {
@@ -334,7 +388,7 @@
 
     function resetFullGame() {
       score = 0;
-      lives = 3;
+      lives = 10; // Zurücksetzung auf 10 Leben[cite: 1]
       currentLevelIndex = 0;
       gameOver = false;
       gameWon = false;
@@ -616,7 +670,6 @@
       );
     }
 
-    // KORRIGIERTE ZEICHEN-FUNKTION FÜR GEGNER UND SPIELER
     function drawCharacter(img, x, y, width, height, isFacingLeft, bodyColor = '#e74c3c', isPlayer = false, isDying = false) {
       ctx.save();
       const cx = x + width / 2;
@@ -629,12 +682,10 @@
         ctx.scale(-1, 1);
       }
 
-      // Falls das Bild geladen ist, nutze ein quadratischeres Seitenverhältnis, damit die Gesichter nicht verzerrt werden
       if (img.complete && img.naturalWidth !== 0) {
         const renderSize = width * 1.3;
         ctx.drawImage(img, -renderSize/2, -renderSize/2 - 4, renderSize, renderSize);
       } else {
-        // Fallback, falls das Bild noch lädt
         ctx.fillStyle = bodyColor;
         ctx.fillRect(-width/2, -height/2, width, height);
       }
