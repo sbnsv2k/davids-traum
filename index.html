@@ -95,19 +95,17 @@
     const bossImg = new Image();
     bossImg.src = 'assets/boss.png';
 
-    // Bilder der Gegner
+    // Bilder der Gegner (Korrekt zugewiesen)
     const enemyImages = [new Image(), new Image(), new Image()];
     enemyImages[0].src = 'assets/sebigegner.webp';
-    enemyImages.src = 'assets/kaigegner.webp';
-    enemyImages.src = 'assets/domegegner.webp';
+    enemyImages[1].src = 'assets/kaigegner.webp';
+    enemyImages[2].src = 'assets/domegegner.webp';
 
     // Audio-Dateien
     const jumpSound = new Audio('assets/davidsprung.mp3');
     const killSound = new Audio('assets/kissme.mp3');
     const flagSound = new Audio('assets/schlatz.mp3');
     const coinSound = new Audio('assets/coin.mp3');
-
-    // NEU: Boss-Treffersound ("Ja! Ja!")
     const bossHitSound = new Audio('assets/ja.mp3');
 
     const deathSounds = [
@@ -168,44 +166,21 @@
     let gameWon = false;
     let animTimer = 0;
 
-    // Effekt-Arrays
     let particles = [];
     let floatingTexts = [];
     let fireballs = [];
 
-    // Eingaben & Kamera
     const keys = { left: false, right: false, jump: false, sprint: false };
     const camera = { x: 0, y: 0 };
 
-    // --- PHYSIK ---
     const player = {
-      x: 50,
-      y: 200,
-      width: 28,
-      height: 38,
-      vx: 0,
-      vy: 0,
-      
-      walkSpeed: 3.6,
-      runSpeed: 5.2,
-      accel: 0.35,
-      airAccel: 0.22,
-      friction: 0.76,
-      drag: 0.94,
-      gravity: 0.42,
-      
-      jumpForce: -10.8,
-      grounded: false,
-      facing: 'right',
-      
-      coyoteTime: 0,
-      jumpBuffer: 0,
-
-      isDying: false,
-      rotation: 0
+      x: 50, y: 200, width: 28, height: 38, vx: 0, vy: 0,
+      walkSpeed: 3.6, runSpeed: 5.2, accel: 0.35, airAccel: 0.22,
+      friction: 0.76, drag: 0.94, gravity: 0.42,
+      jumpForce: -10.8, grounded: false, facing: 'right',
+      coyoteTime: 0, jumpBuffer: 0, isDying: false, rotation: 0
     };
 
-    // --- LEVEL DEFINITIONEN ---
     const levels = [
       {
         name: "1-1", width: 4000, bgColor: "#5c94fc",
@@ -509,7 +484,6 @@
       }
     ];
 
-    // --- EFFEKT-FUNKTIONEN ---
     function createExplosion(x, y, colors, count = 12) {
       for (let i = 0; i < count; i++) {
         const angle = Math.random() * Math.PI * 2;
@@ -527,9 +501,7 @@
     }
 
     function createFloatingText(x, y, text, color = '#ffffff') {
-      floatingTexts.push({
-        x: x, y: y, text: text, color: color, vy: -1.5, alpha: 1, decay: 0.02
-      });
+      floatingTexts.push({ x: x, y: y, text: text, color: color, vy: -1.5, alpha: 1, decay: 0.02 });
     }
 
     function updateParticles(dt) {
@@ -574,7 +546,6 @@
       });
     }
 
-    // Steuerung
     window.addEventListener('keydown', e => {
       startBgMusic();
       if (['ArrowLeft', 'KeyA'].includes(e.code)) keys.left = true;
@@ -647,7 +618,6 @@
       document.getElementById('livesDisplay').innerText = `LEBEN: ${'❤️'.repeat(Math.max(0, lives))}`;
     }
 
-    // --- GAME ENGINE LOGIK ---
     function update(dt) {
       animTimer += dt * 0.15;
       updateParticles(dt);
@@ -744,7 +714,6 @@
 
       if (player.y > canvas.height + 100) handlePlayerDeath();
 
-      // Münzen
       currentLvl.coins.forEach(coin => {
         if (!coin.collected) {
           const coinRect = { x: coin.x, y: coin.y, width: 16, height: 16 };
@@ -759,7 +728,6 @@
         }
       });
 
-      // Normale Gegner
       if (currentLvl.enemies) {
         currentLvl.enemies.forEach(enemy => {
           if (enemy.alive === false) return;
@@ -788,7 +756,6 @@
         });
       }
 
-      // --- BOSS LOGIK ---
       const boss = currentLvl.boss;
       if (boss && boss.alive !== false) {
         if (boss.currentX === undefined) boss.currentX = boss.x;
@@ -815,8 +782,6 @@
           if (player.vy > 0 && player.y + player.height - (player.vy * dt) <= boss.y + 20) {
             boss.hp--;
             player.vy = player.jumpForce * 0.8;
-            
-            // NEU: Boss-Sounds statt Kill-Sound
             playBossHitSound();
 
             createExplosion(boss.currentX + boss.width/2, boss.y + boss.height/2, ['#ff2200', '#ffaa00', '#ffffff'], 20);
@@ -835,7 +800,6 @@
         }
       }
 
-      // Feuerball-Physik & Kollision
       for (let i = fireballs.length - 1; i >= 0; i--) {
         let fb = fireballs[i];
         fb.x += fb.vx * dt;
@@ -854,7 +818,6 @@
         }
       }
 
-      // Ziel-Flaggen-Logik
       if (checkCollision(player, currentLvl.flag)) {
         if (!boss || boss.alive === false) {
           playFlagSound();
@@ -896,7 +859,6 @@
       );
     }
 
-    // --- CHARAKTER ZEICHNEN ---
     function drawCharacter(img, x, y, width, height, isFacingLeft, bodyColor = '#e74c3c', isPlayer = false, isDying = false) {
       ctx.save();
       const cx = x + width / 2;
@@ -945,7 +907,6 @@
       ctx.restore();
     }
 
-    // --- GRAPHICS ---
     function draw() {
       const currentLvl = levels[currentLevelIndex];
 
@@ -955,7 +916,6 @@
       ctx.save();
       ctx.translate(-Math.round(camera.x), 0);
 
-      // Plattformen & Fallen zeichnen
       currentLvl.platforms.forEach(plat => {
         if (plat.type === 'spike') {
           ctx.fillStyle = '#e74c3c';
@@ -990,7 +950,6 @@
         }
       });
 
-      // Münzen
       currentLvl.coins.forEach(coin => {
         if (!coin.collected) {
           ctx.fillStyle = '#ffd700';
@@ -1003,7 +962,6 @@
         }
       });
 
-      // Normale Gegner
       if (currentLvl.enemies) {
         currentLvl.enemies.forEach(enemy => {
           if (enemy.alive === false) return;
@@ -1014,7 +972,6 @@
         });
       }
 
-      // BOSS GEGNER ZEICHNEN
       const boss = currentLvl.boss;
       if (boss && boss.alive !== false) {
         const bx = Math.round(boss.currentX || boss.x);
@@ -1027,7 +984,6 @@
         ctx.fillRect(bx - 8, by - 14, (86 * (boss.hp / boss.maxHp)), 6);
       }
 
-      // Feuerbälle zeichnen
       fireballs.forEach(fb => {
         ctx.fillStyle = '#ff5500';
         ctx.beginPath();
@@ -1039,7 +995,6 @@
         ctx.fill();
       });
 
-      // Zielflagge
       const f = currentLvl.flag;
       ctx.fillStyle = '#ddd';
       ctx.fillRect(f.x, f.y, f.width, f.height);
@@ -1050,7 +1005,6 @@
       ctx.lineTo(f.x + f.width, f.y + 40);
       ctx.fill();
 
-      // SPIELER (David)
       const px = Math.round(player.x);
       const py = Math.round(player.y);
       drawCharacter(playerImg, px, py, player.width, player.height, player.facing === 'left', '#2980b9', true, player.isDying);
@@ -1059,7 +1013,6 @@
 
       ctx.restore();
 
-      // Overlays
       if (gameOver) {
         drawOverlay("GAME OVER", "Drücke 'R' für einen neuen Versuch", "#ff4444");
       } else if (gameWon) {
@@ -1080,7 +1033,6 @@
       ctx.textAlign = 'left';
     }
 
-    // --- GAME LOOP ---
     let lastTime = performance.now();
 
     function gameLoop(now) {
