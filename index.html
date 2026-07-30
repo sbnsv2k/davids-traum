@@ -176,7 +176,7 @@
       rotation: 0
     };
 
-    // --- 10 LEVEL DEFINITIONEN ---
+    // --- ALLE 10 LEVEL DEFINITIONEN (Inkl. Boss in Level 10) ---
     const levels = [
       {
         name: "1-1", width: 3000, bgColor: "#5c94fc",
@@ -404,7 +404,7 @@
           { x: 1200, y: 300, width: 100, height: 24, type: 'block' }
         ],
         coins: [{ x: 430, y: 260 }, { x: 830, y: 180 }, { x: 1230, y: 260 }],
-        enemies: [], // Keine normalen Gegner, nur der Boss!
+        enemies: [],
         boss: {
           x: 2000, y: 310, width: 64, height: 80,
           vx: -1.2, minX: 1500, maxX: 2450,
@@ -736,23 +736,21 @@
         let fb = fireballs[i];
         fb.x += fb.vx * dt;
         fb.y += fb.vy * dt;
-        fb.vy += 0.25 * dt; // Bogen-Gravitation
+        fb.vy += 0.25 * dt;
 
-        // Kollision mit Plattformen / Boden
         currentLvl.platforms.forEach(plat => {
           if (checkCollision(fb, plat)) {
             fireballs.splice(i, 1);
           }
         });
 
-        // Kollision mit Spieler
         if (fireballs[i] && checkCollision(player, fb)) {
           fireballs.splice(i, 1);
           handlePlayerDeath();
         }
       }
 
-      // Ziel-Flaggen-Logik (Boss muss besiegt sein im Boss-Level)
+      // Ziel-Flaggen-Logik
       if (checkCollision(player, currentLvl.flag)) {
         if (!boss || boss.alive === false) {
           playFlagSound();
@@ -908,7 +906,7 @@
       if (boss && boss.alive !== false) {
         const bx = Math.round(boss.currentX || boss.x);
         const by = Math.round(boss.y);
-        const img = enemyImages[0]; // Nutzt Sebigegegner als Basis vergrößert
+        const img = enemyImages[0];
         drawCharacter(img, bx, by, boss.width, boss.height, boss.vx < 0, boss.bodyColor, false);
 
         // Boss Lebensbalken
