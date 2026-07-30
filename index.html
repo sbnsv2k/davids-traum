@@ -175,125 +175,185 @@
       rotation: 0
     };
 
-    // --- LEVEL DEFINITIONEN (3 LEVELS) ---
+    // --- 10 LEVEL DEFINITIONEN ---
     const levels = [
-      // LEVEL 1: Tag / Wiese
+      // Level 1: Wiese / Tag
       {
-        name: "1-1",
-        width: 3600,
-        bgColor: "#5c94fc",
+        name: "1-1", width: 3400, bgColor: "#5c94fc",
         platforms: [
-          { x: 0, y: 400, width: 800, height: 50 },
-          { x: 900, y: 400, width: 900, height: 50 },
-          { x: 1900, y: 400, width: 800, height: 50 },
-          { x: 2800, y: 400, width: 800, height: 50 },
-
-          { x: 300, y: 340, width: 45, height: 60, type: 'pipe' },
-          { x: 550, y: 300, width: 45, height: 100, type: 'pipe' },
-          { x: 1200, y: 330, width: 45, height: 70, type: 'pipe' },
-          { x: 2100, y: 310, width: 45, height: 90, type: 'pipe' },
-          
-          { x: 200, y: 280, width: 120, height: 24, type: 'block' },
-          { x: 420, y: 220, width: 90, height: 24, type: 'block' },
-          { x: 950, y: 280, width: 150, height: 24, type: 'block' },
-          { x: 1350, y: 220, width: 120, height: 24, type: 'block' },
-          { x: 1550, y: 180, width: 100, height: 24, type: 'block' },
-          { x: 1980, y: 280, width: 140, height: 24, type: 'block' },
-          { x: 2300, y: 220, width: 160, height: 24, type: 'block' },
-          { x: 2600, y: 160, width: 100, height: 24, type: 'block' },
-          { x: 2950, y: 280, width: 120, height: 24, type: 'block' },
+          { x: 0, y: 400, width: 800, height: 50 }, { x: 900, y: 400, width: 800, height: 50 },
+          { x: 1800, y: 400, width: 800, height: 50 }, { x: 2700, y: 400, width: 800, height: 50 },
+          { x: 300, y: 340, width: 45, height: 60, type: 'pipe' }, { x: 550, y: 300, width: 45, height: 100, type: 'pipe' },
+          { x: 200, y: 280, width: 120, height: 24, type: 'block' }, { x: 420, y: 220, width: 90, height: 24, type: 'block' },
+          { x: 1100, y: 280, width: 140, height: 24, type: 'block' }, { x: 1400, y: 210, width: 120, height: 24, type: 'block' },
+          { x: 2050, y: 280, width: 150, height: 24, type: 'block' }, { x: 2400, y: 200, width: 120, height: 24, type: 'block' }
         ],
-        coins: [
-          { x: 220, y: 240 }, { x: 250, y: 240 }, { x: 280, y: 240 },
-          { x: 450, y: 180 }, { x: 980, y: 240 }, { x: 1020, y: 240 },
-          { x: 1380, y: 180 }, { x: 1580, y: 140 }, { x: 2020, y: 240 },
-          { x: 2340, y: 180 }, { x: 2380, y: 180 }, { x: 2630, y: 120 },
-          { x: 2980, y: 240 }
-        ],
+        coins: [{ x: 230, y: 240 }, { x: 450, y: 180 }, { x: 1130, y: 240 }, { x: 1430, y: 170 }, { x: 2080, y: 240 }, { x: 2430, y: 160 }],
         enemies: [
           { x: 400, y: 364, width: 28, height: 36, vx: -0.8, minX: 350, maxX: 520, type: 0, bodyColor: '#e74c3c' },
-          { x: 1000, y: 364, width: 28, height: 36, vx: -1.0, minX: 910, maxX: 1150, type: 1, bodyColor: '#8e44ad' },
-          { x: 1400, y: 184, width: 28, height: 36, vx: 0.8, minX: 1360, maxX: 1460, type: 2, bodyColor: '#2ecc71' },
-          { x: 2000, y: 364, width: 28, height: 36, vx: -1.1, minX: 1920, maxX: 2200, type: 0, bodyColor: '#e74c3c' },
-          { x: 2350, y: 184, width: 28, height: 36, vx: 0.9, minX: 2310, maxX: 2440, type: 1, bodyColor: '#8e44ad' },
-          { x: 3000, y: 364, width: 28, height: 36, vx: -1.0, minX: 2850, maxX: 3200, type: 2, bodyColor: '#2ecc71' }
+          { x: 1200, y: 364, width: 28, height: 36, vx: -1.0, minX: 1000, maxX: 1350, type: 1, bodyColor: '#8e44ad' },
+          { x: 2200, y: 364, width: 28, height: 36, vx: -1.1, minX: 1900, maxX: 2350, type: 2, bodyColor: '#2ecc71' }
+        ],
+        flag: { x: 3250, y: 150, width: 12, height: 250 }
+      },
+      // Level 2: Dämmerung
+      {
+        name: "1-2", width: 3600, bgColor: "#4a69bd",
+        platforms: [
+          { x: 0, y: 400, width: 600, height: 50 }, { x: 750, y: 340, width: 120, height: 24, type: 'block' },
+          { x: 1000, y: 400, width: 700, height: 50 }, { x: 1850, y: 280, width: 100, height: 24, type: 'block' },
+          { x: 2100, y: 400, width: 700, height: 50 }, { x: 2950, y: 320, width: 120, height: 24, type: 'block' },
+          { x: 3200, y: 400, width: 500, height: 50 },
+          { x: 300, y: 340, width: 45, height: 60, type: 'pipe' }, { x: 1300, y: 310, width: 45, height: 90, type: 'pipe' },
+          { x: 2400, y: 300, width: 45, height: 100, type: 'pipe' }
+        ],
+        coins: [{ x: 780, y: 300 }, { x: 1050, y: 360 }, { x: 1880, y: 240 }, { x: 2150, y: 360 }, { x: 2980, y: 280 }],
+        enemies: [
+          { x: 350, y: 364, width: 28, height: 36, vx: -1.1, minX: 300, maxX: 550, type: 1, bodyColor: '#8e44ad' },
+          { x: 1200, y: 364, width: 28, height: 36, vx: 1.2, minX: 1100, maxX: 1500, type: 2, bodyColor: '#2ecc71' },
+          { x: 2300, y: 364, width: 28, height: 36, vx: -1.2, minX: 2200, maxX: 2600, type: 0, bodyColor: '#e74c3c' }
         ],
         flag: { x: 3450, y: 150, width: 12, height: 250 }
       },
-
-      // LEVEL 2: Abend / Höhle (Anspruchsvoller mit mehr Lücken)
+      // Level 3: Höhle / Untergrund
       {
-        name: "1-2",
-        width: 3800,
-        bgColor: "#2c3e50",
+        name: "1-3", width: 3800, bgColor: "#2c3e50",
         platforms: [
-          { x: 0, y: 400, width: 600, height: 50 },
-          { x: 700, y: 360, width: 150, height: 24, type: 'block' },
-          { x: 950, y: 300, width: 150, height: 24, type: 'block' },
-          { x: 1200, y: 400, width: 700, height: 50 },
-          { x: 2000, y: 320, width: 100, height: 24, type: 'block' },
-          { x: 2200, y: 240, width: 100, height: 24, type: 'block' },
-          { x: 2400, y: 400, width: 600, height: 50 },
-          { x: 3100, y: 340, width: 80, height: 24, type: 'block' },
-          { x: 3300, y: 400, width: 500, height: 50 },
-
-          { x: 250, y: 340, width: 45, height: 60, type: 'pipe' },
-          { x: 1400, y: 300, width: 45, height: 100, type: 'pipe' },
-          { x: 1700, y: 330, width: 45, height: 70, type: 'pipe' },
-          { x: 2700, y: 310, width: 45, height: 90, type: 'pipe' }
+          { x: 0, y: 400, width: 500, height: 50 }, { x: 600, y: 320, width: 90, height: 24, type: 'block' },
+          { x: 780, y: 250, width: 90, height: 24, type: 'block' }, { x: 980, y: 180, width: 100, height: 24, type: 'block' },
+          { x: 1250, y: 400, width: 600, height: 50 }, { x: 2000, y: 300, width: 100, height: 24, type: 'block' },
+          { x: 2250, y: 220, width: 100, height: 24, type: 'block' }, { x: 2500, y: 400, width: 800, height: 50 },
+          { x: 3450, y: 320, width: 80, height: 24, type: 'block' }, { x: 3650, y: 400, width: 400, height: 50 }
         ],
-        coins: [
-          { x: 720, y: 320 }, { x: 760, y: 320 },
-          { x: 970, y: 260 }, { x: 1010, y: 260 },
-          { x: 1450, y: 260 }, { x: 1500, y: 260 },
-          { x: 2020, y: 280 }, { x: 2220, y: 200 },
-          { x: 2500, y: 350 }, { x: 2550, y: 350 },
-          { x: 3120, y: 300 }
-        ],
+        coins: [{ x: 630, y: 280 }, { x: 810, y: 210 }, { x: 1010, y: 140 }, { x: 2030, y: 260 }, { x: 2280, y: 180 }, { x: 3480, y: 280 }],
         enemies: [
-          { x: 350, y: 364, width: 28, height: 36, vx: -1.2, minX: 300, maxX: 550, type: 1, bodyColor: '#8e44ad' },
-          { x: 1300, y: 364, width: 28, height: 36, vx: 1.1, minX: 1220, maxX: 1380, type: 2, bodyColor: '#2ecc71' },
-          { x: 1550, y: 364, width: 28, height: 36, vx: -1.3, minX: 1480, maxX: 1680, type: 0, bodyColor: '#e74c3c' },
-          { x: 2450, y: 364, width: 28, height: 36, vx: 1.2, minX: 2410, maxX: 2650, type: 1, bodyColor: '#8e44ad' },
-          { x: 2800, y: 364, width: 28, height: 36, vx: -1.4, minX: 2750, maxX: 2950, type: 2, bodyColor: '#2ecc71' }
+          { x: 300, y: 364, width: 28, height: 36, vx: -1.3, minX: 200, maxX: 450, type: 0, bodyColor: '#e74c3c' },
+          { x: 1350, y: 364, width: 28, height: 36, vx: 1.3, minX: 1300, maxX: 1700, type: 1, bodyColor: '#8e44ad' },
+          { x: 2700, y: 364, width: 28, height: 36, vx: -1.4, minX: 2600, maxX: 3100, type: 2, bodyColor: '#2ecc71' }
+        ],
+        flag: { x: 3850, y: 150, width: 12, height: 250 }
+      },
+      // Level 4: Wüste
+      {
+        name: "1-4", width: 3800, bgColor: "#e58e26",
+        platforms: [
+          { x: 0, y: 400, width: 700, height: 50 }, { x: 850, y: 330, width: 120, height: 24, type: 'block' },
+          { x: 1100, y: 260, width: 120, height: 24, type: 'block' }, { x: 1400, y: 400, width: 800, height: 50 },
+          { x: 2350, y: 320, width: 100, height: 24, type: 'block' }, { x: 2550, y: 240, width: 100, height: 24, type: 'block' },
+          { x: 2800, y: 400, width: 1000, height: 50 }
+        ],
+        coins: [{ x: 880, y: 290 }, { x: 1130, y: 220 }, { x: 2380, y: 280 }, { x: 2580, y: 200 }],
+        enemies: [
+          { x: 400, y: 364, width: 28, height: 36, vx: -1.3, minX: 300, maxX: 600, type: 2, bodyColor: '#2ecc71' },
+          { x: 1600, y: 364, width: 28, height: 36, vx: 1.4, minX: 1450, maxX: 2000, type: 0, bodyColor: '#e74c3c' },
+          { x: 3000, y: 364, width: 28, height: 36, vx: -1.5, minX: 2900, maxX: 3500, type: 1, bodyColor: '#8e44ad' }
         ],
         flag: { x: 3650, y: 150, width: 12, height: 250 }
       },
-
-      // LEVEL 3: Nacht / Finale (Präzisionssprünge & viele Gegner)
+      // Level 5: Eiswelt
       {
-        name: "1-3",
-        width: 4000,
-        bgColor: "#1a1a2e",
+        name: "1-5", width: 4000, bgColor: "#38ada9",
         platforms: [
-          { x: 0, y: 400, width: 500, height: 50 },
-          { x: 600, y: 320, width: 80, height: 24, type: 'block' },
-          { x: 780, y: 260, width: 80, height: 24, type: 'block' },
-          { x: 960, y: 200, width: 120, height: 24, type: 'block' },
-          { x: 1200, y: 400, width: 500, height: 50 },
-          { x: 1800, y: 340, width: 45, height: 60, type: 'pipe' },
-          { x: 1950, y: 280, width: 45, height: 120, type: 'pipe' },
-          { x: 2100, y: 220, width: 100, height: 24, type: 'block' },
-          { x: 2300, y: 160, width: 80, height: 24, type: 'block' },
-          { x: 2500, y: 400, width: 800, height: 50 },
-          { x: 3400, y: 320, width: 90, height: 24, type: 'block' },
-          { x: 3600, y: 400, width: 400, height: 50 }
+          { x: 0, y: 400, width: 600, height: 50 }, { x: 700, y: 330, width: 80, height: 24, type: 'block' },
+          { x: 860, y: 260, width: 80, height: 24, type: 'block' }, { x: 1020, y: 190, width: 80, height: 24, type: 'block' },
+          { x: 1250, y: 400, width: 700, height: 50 }, { x: 2100, y: 320, width: 110, height: 24, type: 'block' },
+          { x: 2350, y: 240, width: 110, height: 24, type: 'block' }, { x: 2650, y: 400, width: 1350, height: 50 }
         ],
-        coins: [
-          { x: 630, y: 280 }, { x: 810, y: 220 }, { x: 1000, y: 160 },
-          { x: 1300, y: 350 }, { x: 1350, y: 350 }, { x: 1400, y: 350 },
-          { x: 2130, y: 180 }, { x: 2320, y: 120 },
-          { x: 2600, y: 350 }, { x: 2700, y: 350 }, { x: 2800, y: 350 },
-          { x: 3430, y: 280 }
-        ],
+        coins: [{ x: 730, y: 290 }, { x: 890, y: 220 }, { x: 1050, y: 150 }, { x: 2130, y: 280 }, { x: 2380, y: 200 }],
         enemies: [
-          { x: 300, y: 364, width: 28, height: 36, vx: -1.4, minX: 200, maxX: 450, type: 0, bodyColor: '#e74c3c' },
-          { x: 980, y: 164, width: 28, height: 36, vx: 0.9, minX: 960, maxX: 1050, type: 2, bodyColor: '#2ecc71' },
-          { x: 1350, y: 364, width: 28, height: 36, vx: -1.5, minX: 1220, maxX: 1450, type: 1, bodyColor: '#8e44ad' },
-          { x: 2600, y: 364, width: 28, height: 36, vx: 1.4, minX: 2520, maxX: 2800, type: 0, bodyColor: '#e74c3c' },
-          { x: 2900, y: 364, width: 28, height: 36, vx: -1.6, minX: 2820, maxX: 3200, type: 2, bodyColor: '#2ecc71' }
+          { x: 350, y: 364, width: 28, height: 36, vx: -1.4, minX: 250, maxX: 550, type: 1, bodyColor: '#8e44ad' },
+          { x: 1400, y: 364, width: 28, height: 36, vx: 1.5, minX: 1300, maxX: 1800, type: 2, bodyColor: '#2ecc71' },
+          { x: 3000, y: 364, width: 28, height: 36, vx: -1.5, minX: 2800, maxX: 3500, type: 0, bodyColor: '#e74c3c' }
         ],
         flag: { x: 3850, y: 150, width: 12, height: 250 }
+      },
+      // Level 6: Dschungel
+      {
+        name: "1-6", width: 4000, bgColor: "#1e3799",
+        platforms: [
+          { x: 0, y: 400, width: 550, height: 50 }, { x: 650, y: 340, width: 100, height: 24, type: 'block' },
+          { x: 850, y: 270, width: 100, height: 24, type: 'block' }, { x: 1100, y: 400, width: 700, height: 50 },
+          { x: 1950, y: 320, width: 90, height: 24, type: 'block' }, { x: 2150, y: 240, width: 90, height: 24, type: 'block' },
+          { x: 2350, y: 170, width: 90, height: 24, type: 'block' }, { x: 2600, y: 400, width: 1400, height: 50 }
+        ],
+        coins: [{ x: 680, y: 300 }, { x: 880, y: 230 }, { x: 1980, y: 280 }, { x: 2180, y: 200 }, { x: 2380, y: 130 }],
+        enemies: [
+          { x: 300, y: 364, width: 28, height: 36, vx: -1.5, minX: 200, maxX: 500, type: 0, bodyColor: '#e74c3c' },
+          { x: 1300, y: 364, width: 28, height: 36, vx: 1.5, minX: 1200, maxX: 1650, type: 1, bodyColor: '#8e44ad' },
+          { x: 3000, y: 364, width: 28, height: 36, vx: -1.6, minX: 2800, maxX: 3600, type: 2, bodyColor: '#2ecc71' }
+        ],
+        flag: { x: 3850, y: 150, width: 12, height: 250 }
+      },
+      // Level 7: Fabrik / Lava
+      {
+        name: "1-7", width: 4200, bgColor: "#b71540",
+        platforms: [
+          { x: 0, y: 400, width: 500, height: 50 }, { x: 600, y: 300, width: 70, height: 24, type: 'block' },
+          { x: 750, y: 220, width: 70, height: 24, type: 'block' }, { x: 920, y: 300, width: 70, height: 24, type: 'block' },
+          { x: 1100, y: 400, width: 600, height: 50 }, { x: 1900, y: 330, width: 120, height: 24, type: 'block' },
+          { x: 2200, y: 250, width: 120, height: 24, type: 'block' }, { x: 2500, y: 400, width: 1700, height: 50 }
+        ],
+        coins: [{ x: 625, y: 260 }, { x: 775, y: 180 }, { x: 945, y: 260 }, { x: 1930, y: 290 }, { x: 2230, y: 210 }],
+        enemies: [
+          { x: 300, y: 364, width: 28, height: 36, vx: -1.6, minX: 200, maxX: 450, type: 2, bodyColor: '#2ecc71' },
+          { x: 1350, y: 364, width: 28, height: 36, vx: 1.6, minX: 1200, maxX: 1600, type: 0, bodyColor: '#e74c3c' },
+          { x: 3000, y: 364, width: 28, height: 36, vx: -1.7, minX: 2700, maxX: 3800, type: 1, bodyColor: '#8e44ad' }
+        ],
+        flag: { x: 4050, y: 150, width: 12, height: 250 }
+      },
+      // Level 8: Wolkenhimmel
+      {
+        name: "1-8", width: 4200, bgColor: "#0abde3",
+        platforms: [
+          { x: 0, y: 400, width: 450, height: 50 }, { x: 550, y: 330, width: 90, height: 24, type: 'block' },
+          { x: 720, y: 260, width: 90, height: 24, type: 'block' }, { x: 900, y: 190, width: 90, height: 24, type: 'block' },
+          { x: 1150, y: 400, width: 650, height: 50 }, { x: 1950, y: 300, width: 100, height: 24, type: 'block' },
+          { x: 2200, y: 220, width: 100, height: 24, type: 'block' }, { x: 2500, y: 400, width: 1700, height: 50 }
+        ],
+        coins: [{ x: 580, y: 290 }, { x: 750, y: 220 }, { x: 930, y: 150 }, { x: 1980, y: 260 }, { x: 2230, y: 180 }],
+        enemies: [
+          { x: 250, y: 364, width: 28, height: 36, vx: -1.7, minX: 150, maxX: 400, type: 1, bodyColor: '#8e44ad' },
+          { x: 1350, y: 364, width: 28, height: 36, vx: 1.7, minX: 1250, maxX: 1700, type: 2, bodyColor: '#2ecc71' },
+          { x: 3100, y: 364, width: 28, height: 36, vx: -1.8, minX: 2800, maxX: 3800, type: 0, bodyColor: '#e74c3c' }
+        ],
+        flag: { x: 4050, y: 150, width: 12, height: 250 }
+      },
+      // Level 9: Die dunkle Festung
+      {
+        name: "1-9", width: 4400, bgColor: "#341f97",
+        platforms: [
+          { x: 0, y: 400, width: 400, height: 50 }, { x: 520, y: 320, width: 80, height: 24, type: 'block' },
+          { x: 680, y: 250, width: 80, height: 24, type: 'block' }, { x: 840, y: 180, width: 80, height: 24, type: 'block' },
+          { x: 1020, y: 120, width: 80, height: 24, type: 'block' }, { x: 1250, y: 400, width: 600, height: 50 },
+          { x: 2000, y: 310, width: 110, height: 24, type: 'block' }, { x: 2250, y: 230, width: 110, height: 24, type: 'block' },
+          { x: 2550, y: 400, width: 1850, height: 50 }
+        ],
+        coins: [{ x: 550, y: 280 }, { x: 710, y: 210 }, { x: 870, y: 140 }, { x: 1050, y: 80 }, { x: 2040, y: 270 }, { x: 2290, y: 190 }],
+        enemies: [
+          { x: 250, y: 364, width: 28, height: 36, vx: -1.8, minX: 150, maxX: 350, type: 0, bodyColor: '#e74c3c' },
+          { x: 1450, y: 364, width: 28, height: 36, vx: 1.8, minX: 1300, maxX: 1750, type: 1, bodyColor: '#8e44ad' },
+          { x: 3200, y: 364, width: 28, height: 36, vx: -1.9, minX: 2800, maxX: 4000, type: 2, bodyColor: '#2ecc71' }
+        ],
+        flag: { x: 4250, y: 150, width: 12, height: 250 }
+      },
+      // Level 10: Das Finale (Schwer & epischen Proportionen)
+      {
+        name: "1-10", width: 4500, bgColor: "#0f051d",
+        platforms: [
+          { x: 0, y: 400, width: 400, height: 50 }, { x: 500, y: 320, width: 70, height: 24, type: 'block' },
+          { x: 650, y: 250, width: 70, height: 24, type: 'block' }, { x: 800, y: 180, width: 70, height: 24, type: 'block' },
+          { x: 1000, y: 400, width: 500, height: 50 }, { x: 1700, y: 330, width: 90, height: 24, type: 'block' },
+          { x: 1900, y: 260, width: 90, height: 24, type: 'block' }, { x: 2100, y: 190, width: 90, height: 24, type: 'block' },
+          { x: 2350, y: 400, width: 2150, height: 50 }
+        ],
+        coins: [{ x: 530, y: 280 }, { x: 680, y: 210 }, { x: 830, y: 140 }, { x: 1730, y: 290 }, { x: 1930, y: 220 }, { x: 2130, y: 150 }],
+        enemies: [
+          { x: 200, y: 364, width: 28, height: 36, vx: -2.0, minX: 100, maxX: 350, type: 2, bodyColor: '#2ecc71' },
+          { x: 1150, y: 364, width: 28, height: 36, vx: 2.0, minX: 1050, maxX: 1400, type: 0, bodyColor: '#e74c3c' },
+          { x: 2800, y: 364, width: 28, height: 36, vx: -2.1, minX: 2500, maxX: 3300, type: 1, bodyColor: '#8e44ad' },
+          { x: 3500, y: 364, width: 28, height: 36, vx: 2.1, minX: 3200, maxX: 4200, type: 2, bodyColor: '#2ecc71' }
+        ],
+        flag: { x: 4350, y: 150, width: 12, height: 250 }
       }
     ];
 
@@ -557,7 +617,6 @@
         playFlagSound();
         createExplosion(currentLvl.flag.x, currentLvl.flag.y + 20, ['#ff0055', '#00ffcc', '#ffff00', '#ff00ff', '#00ff00'], 40);
         
-        // Level wechseln oder gewinnen!
         if (currentLevelIndex < levels.length - 1) {
           currentLevelIndex++;
           resetPlayerPosition();
@@ -592,7 +651,6 @@
       );
     }
 
-    // --- CHARAKTER ZEICHNEN ---
     function drawCharacter(img, x, y, width, height, isFacingLeft, bodyColor = '#e74c3c', isPlayer = false, isDying = false) {
       ctx.save();
       const cx = x + width / 2;
@@ -616,12 +674,10 @@
       const isMoving = isPlayer ? Math.abs(player.vx) > 0.1 : true;
       const legOffset = isMoving ? Math.sin(animTimer * 10) * 3 : 0;
 
-      // 1. Beine
       ctx.fillStyle = '#111';
       ctx.fillRect(-bodyW/2 + 1, bodyH/2, legW, legH + legOffset);
       ctx.fillRect(bodyW/2 - legW - 1, bodyH/2, legW, legH - legOffset);
 
-      // 2. Körper
       ctx.fillStyle = bodyColor;
       ctx.beginPath();
       if (ctx.roundRect) {
@@ -637,14 +693,12 @@
         ctx.fillRect(bodyW/4 - 2, -1, 3, 3);
       }
 
-      // 3. Gesicht / Kopf
       const headY = -bodyH/2 - headHeight/2 + 4;
       ctx.drawImage(img, -headWidth/2, headY - headHeight/2, headWidth, headHeight);
 
       ctx.restore();
     }
 
-    // --- GRAPHICS ---
     function draw() {
       const currentLvl = levels[currentLevelIndex];
 
@@ -654,7 +708,6 @@
       ctx.save();
       ctx.translate(-Math.round(camera.x), 0);
 
-      // Plattformen
       currentLvl.platforms.forEach(plat => {
         if (plat.type === 'pipe') {
           ctx.fillStyle = '#2e8b57';
@@ -678,7 +731,6 @@
         }
       });
 
-      // Münzen
       currentLvl.coins.forEach(coin => {
         if (!coin.collected) {
           ctx.fillStyle = '#ffd700';
@@ -691,17 +743,14 @@
         }
       });
 
-      // Gegner
       currentLvl.enemies.forEach(enemy => {
         if (enemy.alive === false) return;
         const ex = Math.round(enemy.currentX || enemy.x);
         const ey = Math.round(enemy.y);
         const img = enemyImages[enemy.type % enemyImages.length];
-        
         drawCharacter(img, ex, ey, enemy.width, enemy.height, enemy.vx < 0, enemy.bodyColor, false);
       });
 
-      // Zielflagge
       const f = currentLvl.flag;
       ctx.fillStyle = '#ddd';
       ctx.fillRect(f.x, f.y, f.width, f.height);
@@ -712,20 +761,17 @@
       ctx.lineTo(f.x + f.width, f.y + 40);
       ctx.fill();
 
-      // SPIELER (David)
       const px = Math.round(player.x);
       const py = Math.round(player.y);
       drawCharacter(playerImg, px, py, player.width, player.height, player.facing === 'left', '#2980b9', true, player.isDying);
 
       drawParticles();
-
       ctx.restore();
 
-      // Overlays
       if (gameOver) {
         drawOverlay("GAME OVER", "Drücke 'R' für einen neuen Versuch", "#ff4444");
       } else if (gameWon) {
-        drawOverlay("TRAUM ERFÜLLT! 🎉", `Alle Levels gemeistert! Endpunktzahl: ${score} - Drücke 'R'`, "#44ff44");
+        drawOverlay("TRAUM VOLLENDET! 🎉", `Alle 10 Levels geschafft! Endpunktzahl: ${score} - Drücke 'R'`, "#44ff44");
       }
     }
 
@@ -742,7 +788,6 @@
       ctx.textAlign = 'left';
     }
 
-    // --- GAME LOOP ---
     let lastTime = performance.now();
 
     function gameLoop(now) {
